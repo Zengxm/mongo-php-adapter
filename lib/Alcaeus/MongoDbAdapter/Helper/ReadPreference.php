@@ -41,7 +41,7 @@ trait ReadPreference
             $this->readPreference = new \MongoDB\Driver\ReadPreference(\MongoDB\Driver\ReadPreference::PRIMARY);
         }
 
-        $mode = $this->readPreference->getMode();
+        $mode = $this->readPreference->getModeString();
 
         switch ($mode) {
             case \MongoDB\Driver\ReadPreference::PRIMARY_PREFERRED:
@@ -73,7 +73,7 @@ trait ReadPreference
      */
     protected function getSlaveOkayFromReadPreference()
     {
-        return $this->readPreference->getMode() != \MongoDB\Driver\ReadPreference::PRIMARY;
+        return $this->readPreference->getModeString() != \MongoDB\Driver\ReadPreference::PRIMARY;
     }
 
     /**
